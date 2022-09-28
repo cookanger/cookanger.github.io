@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>PULSE 消除马赛克代码部署应用 | 记录学习成长</title>
-  <meta name="keywords" content=" python , pulse ">
-  <meta name="description" content="PULSE 消除马赛克代码部署应用 | 记录学习成长">
+  <title>群晖增加GoogleAuthenticator认证 | 记录学习成长</title>
+  <meta name="keywords" content=" liunux , synology ">
+  <meta name="description" content="群晖增加GoogleAuthenticator认证 | 记录学习成长">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="学习吧">
 <meta property="og:type" content="website">
@@ -380,9 +380,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-python/pulse" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-linux/photo-station-google-authenticator" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">PULSE 消除马赛克代码部署应用</h1>
+        <h1 class="article-title">群晖增加GoogleAuthenticator认证</h1>
     
     <div class="article-meta">
         
@@ -392,7 +392,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="python">python</a>
+            <a  data-rel="linux">linux</a>
             
         </span>
         
@@ -400,16 +400,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">python</a>
+            <a class="color2">liunux</a>
             
-            <a class="color1">pulse</a>
+            <a class="color4">synology</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-09-28 15:58:42'>2022-09-28 15:33</time>
+            发布时间 : <time class="date" title='最后更新: 2022-09-28 16:19:55'>2022-09-28 16:03</time>
         
     </div>
     <div class="article-meta">
@@ -431,7 +431,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PULSE%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="toc-text">PULSE算法部署运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">代码下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96"><span class="toc-text">环境依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake-x2F-c"><span class="toc-text">cmake &#x2F; c++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python-x2F-conda"><span class="toc-text">python &#x2F; conda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dlib"><span class="toc-text">dlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pytorch"><span class="toc-text">pytorch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cuda"><span class="toc-text">cuda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">数据集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C"><span class="toc-text">代码运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-text">效果展示</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -447,83 +447,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>美国如火如荼进行的BLM（黑命贵）运动。已经从民间上升到了政界，渗透进商业界，<strong>如今已经深入到了AI界</strong>。</p>
-<p> 最近，图灵奖得主、人工智能标杆人物Yann LeCun，因为一则言论被群攻，迫不得已出来道歉。而这起事件的导火索，正是最近突然爆火的PULSE算法</p>
-<p>该算法由杜克大学推出，可以将模糊的照片秒变清晰，效果出奇的好。这项研究在CVPR  2020上发表，论文标题为《PULSE：通过对生成模型的潜在空间探索实现自监督照片上采样（论文连接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2003.03808.pdf">PULSE：Self-Supervised Photo Upsampling via Latent Space Exploration of Generative Models</a>）。</p>
-<p>正当大家兴致勃勃的把玩的时候，谁料PULSE竟莫名闯了祸。</p>
-<p>一张照片引发AI社区大争议，Yann LeCun发推先解释后道歉。</p>
-<p>有人发现，将一张奥巴马的模糊照片，用PULSE洗出来以后，变成了一个白人！<strong>真•洗白？</strong></p>
-<p><img src="/2022/09/28/python/pulse/1.png" alt="奥巴马被洗白?"></p>
-<p>这下美国网民不干了，纷纷将斗争的矛头指向了人工智能。</p>
-<p>一向敢说的Yann LeCun，就这张照片发推表示：「结果的偏差，原因在于数据的偏差。为什么PULSE会出现奥巴马被洗白的情况？因为它是在FlickFaceHQ上进行预训练，这个数据集里基本都是白人照片。如果换成来自塞内加尔的数据集，训练完全相同的系统，那必然是每个人都看起来像非洲人。」</p>
-<p>这下很多AI研究人员、从业者也不干了，纷纷将斗争的矛头指向了LeCun。</p>
-<p>[以上内容来自 搜狐新闻 ]: <a target="_blank" rel="noopener" href="http://www.sohu.com/a/404339367_100191017">www.sohu.com/a/404339367_100191017</a>	“ 图灵奖得主道歉 因爆火的PULSE算法卷入“种族歧视”风波“</p>
-<h2 id="PULSE算法部署运行"><a href="#PULSE算法部署运行" class="headerlink" title="PULSE算法部署运行"></a>PULSE算法部署运行</h2><p>具体的舆论争吵就不聊了，看到这条新闻的时候，我感兴趣的就是这个PULSE算法，经过一番了解通俗点来说就是消除马赛克秒变高清人像，听起来好像挺好玩，这么好玩的东西当然要在自己电脑上运行起来了，于是就开始排坑了～</p>
-<p><img src="/2022/09/28/python/pulse/2.gif" alt="动态图?"></p>
-<h3 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h3><p>代码在github上：<a target="_blank" rel="noopener" href="https://github.com/adamian98/pulse">https://github.com/adamian98/pulse</a>，首先clone下来，如果特别慢，可以使用gitee导入github库，然后在gitee中下载下来。</p>
-<blockquote>
-<p>代码中有两个数据是需要从google drive中下载的，如果无法下载可以，可以直接迁出我的<a target="_blank" rel="noopener" href="https://gitee.com/cookanger/pulse">gitee仓库</a>，里边有已经下载好的数据集，并且代码是可运行成功的</p>
-</blockquote>
-<p>README.md中标明了：</p>
-<blockquote>
-<p> You will need to install cmake first (required for dlib, which is used  for face alignment). Currently the code only works with CUDA installed  (and therefore requires an appropriate GPU) and has been tested on Linux and Windows. For the full set of required Python packages, create a  Conda environment from the provided YAML, e.g.</p>
-</blockquote>
-<p>也就是需要安装cmake，dlib库，以及cuda支持，cuda代表需要<strong>nvidia显卡</strong>，所以没有N卡的同学也可以退散了，（或许也可以改代码不调用cuda，但我没实现）。</p>
-<p>起初，打算在windows上运行起来，发现真的是各种行不通，光安装一个dlib(算法库)都很费劲，编译安装就是报错，还得安装vs，以至于我最一开始放弃运行pulse的想法了，但是我实在是不死心，于是周末又在一台ubuntu系统上重新来过，发现一切都是秒过，直接安装成功，不禁感叹，搞开发还是得linux下。</p>
-<p>所以window下的同学也可以退散了，（或许你可以搞定dlib安装，搞定了就可以接着看）。</p>
-<h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><h4 id="cmake-x2F-c"><a href="#cmake-x2F-c" class="headerlink" title="cmake &#x2F; c++"></a>cmake &#x2F; c++</h4><pre><code class="shell">sudo apt-get install build-essential cmake
-sudo apt-get install libgtk-3-dev
-sudo apt-get install libboost-all-dev
+        <p><img src="/2022/09/28/linux/photo-station-google-authenticator/4.png"></p>
+<p>最近向电信申请了公网ip，然后就把黑群晖通过路由的端口映射功能把NAS管理、PhotoStation 、NoteStation等一些常用的服务映射出公网去了，但是暴漏到公网就意味着可能受到攻击，于是乎又申请域名，ssh修改Nginx增加https证书，修改安全策略限制错误密码次数封锁ip，禁用admin账户设置超级复杂密码，增加Google Authenticator二次认证等等一系列操作后，最后看着浏览器的小锁标志、登录框中的二次认证登录心里仿佛感觉到了一些安全感。群晖Photo Station增加Google Authenticator认证</p>
+<p><img src="/2022/09/28/linux/photo-station-google-authenticator/1.png"></p>
+<p>实际测试，Note Station、Surveillance Station等一些服务都是基于DSM账号安全管理的，当登录以上那些服务的时候会有密码错误限制和谷歌二次认证安全策略，但PhotoStation并不是的，这意味着如果你开放PhotoStation服务，就有可能面临暴力破解的隐患，发下这个事情的我首先想到的就是屏蔽PhotoStaion外网权限，一劳永逸。或者修改用户组，但还是会存在问题，因为PhotoStation仍然会存在一个DSM账号可以爆破登录，在我看来如果能加上和管理页面相同的Google Authenticator认证会让安全性增加不少。群晖Photo Station增加Google Authenticator认证</p>
+<p><img src="/2022/09/28/linux/photo-station-google-authenticator/2.png"></p>
+<p>下面直接说操作了思路了</p>
+<p>一、当你设置了控制面板-用户账户-高级设置-两步骤验证后就会在群晖下面的路径中&#x2F;usr&#x2F;syno&#x2F;etc&#x2F;preference&#x2F;&lt;你的账户名&gt;&#x2F;google_authenticator生成一个文件，使用cat命令将会看到几行文字，其中第一行的16个字符就是Google Authenticator的密钥，这里我们将其复制下来以备后用。</p>
+<p>二、因为PhotoStation是用的PHP语言开发的，所以我们需要修改php代码，首先 打开<a target="_blank" rel="noopener" href="https://github.com/PHPGangsta/GoogleAuthenticator">https://github.com/PHPGangsta/GoogleAuthenticator</a>，然后下载&#x2F;PHPGangsta&#x2F;GoogleAuthenticator.php文件将其复制到&#x2F;var&#x2F;packages&#x2F;PhotoStation&#x2F;target&#x2F;photo&#x2F;webapi目录中，GoogleAuthenticator.php是php实现的GoogleAuthenticator算法，这里我需要使用其校验方法。</p>
+<p>三、修改页面表单，&#x2F;var&#x2F;packages&#x2F;PhotoStation&#x2F;target&#x2F;photo&#x2F;index.php，在122行出增加一行:</p>
+<pre><code class="html">&lt;input type=&quot;text&quot; id=&quot;login_otpCode&quot; name=&quot;otpCode&quot; class=&quot;sbox-text login-input&quot; /&gt; 
 </code></pre>
-<h4 id="python-x2F-conda"><a href="#python-x2F-conda" class="headerlink" title="python &#x2F; conda"></a>python &#x2F; conda</h4><pre><code class="shell">#建议使用conda,但conda不是必须安装的，主要是解决了包依赖安装即可
-#安装conda就不多太详细了，我的python版本使用3.8，估计3.x都可以
-
-#下载Anaconda3
-wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-bash Anaconda3-2020.02-Linux-x86_64.sh
-#进入到pulse代码目录中,创建pulse环境
-conda env create -n pulse -f pulse.yml
-#激活
-conda activate pulse
-#conda安装慢可以访问 https://mirror.tuna.tsinghua.edu.cn/help/anaconda/ 使用国内源加快访问下载
+<p>代码。</p>
+<p>四、修改页面JS，&#x2F;var&#x2F;packages&#x2F;PhotoStation&#x2F;target&#x2F;photo&#x2F;photo_new&#x2F;syno_photo_main.js,由于这个js是压缩文件，我建议将其复制出来，在idea、phpstrom、vscode任意一款代码编辑器中格式化代码一下，然后大约15400行左右增加如下代码</p>
+<pre><code class="css">    ,&#123;
+    hideLabel: true,
+    cls: &quot;photo-login-password&quot;,
+    itemId: &quot;otpCode&quot;,
+    xtype: &quot;textfield&quot;,
+    width: 300,
+    inputType: &quot;textfield&quot;
+    &#125;，
 </code></pre>
-<h4 id="dlib"><a href="#dlib" class="headerlink" title="dlib"></a>dlib</h4><pre><code class="shell">#其实可以直接使用pip install dlib进行安装，但是我安装是一直报错的，如果你也报错的可以先下载下来再进行安装
-#dlib安装教程 http://dlib.net/compile.html
-#dlib下载连接：http://dlib.net/files/dlib-19.20.tar.bz2，下载完成之后解压，然后进入目录
-
-# Using dlib from Python
-python setup.py install
-
-#Using dlib from C++
-cd examples
-mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
+<p>然后顺着代码往下看，找到onClickLogin方法增加 e &#x3D; this.getComponent(“otpCode”).getValue(); Ext.get(“login_otpCode”).dom.value &#x3D; e; 相关代码，以保证表单提交会将谷歌验证发发动到php后台接口中。</p>
+<p>五、最终我们要修改php接口，修改&#x2F;var&#x2F;packages&#x2F;PhotoStation&#x2F;target&#x2F;photo&#x2F;webapi&#x2F;auth.php.在第六行require_once(‘..&#x2F;include&#x2F;shared_album.php’);下面增加require_once(‘GoogleAuthenticator.php’);代码，然后找到Login方法，在第一个判断下面增加如下代码</p>
+<pre><code class="javascript">if (!isset($_REQUEST[&#39;otpCode&#39;])) &#123;
+    return [false,&#39;WEBAPI_ERR_BAD_REQUEST&#39;];
+&#125;else&#123;
+    $otpCode=$_REQUEST[&#39;otpCode&#39;];
+    $ga = new PHPGangsta_GoogleAuthenticator();
+    $secret = &#39;xxxxxxxxxxxx&#39;;//密钥,改成你自己的
+    $checkResult = $ga-&gt;verifyCode($secret, $otpCode, 0);
+    if (!$checkResult) &#123;
+        return [false, WEBAPI_ERR_BAD_REQUEST];
+    &#125;
+&#125;
 </code></pre>
-<h4 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h4><p><img src="/2022/09/28/python/pulse/3.png"></p>
-<pre><code class="shell">#官网 https://pytorch.org/get-started/locally/
-
-#得到安装命令
-conda install pytorch torchvision cudatoolkit=10.2 -c pytorch
-</code></pre>
-<h4 id="cuda"><a href="#cuda" class="headerlink" title="cuda"></a>cuda</h4><p>左下角 附加驱动</p>
-<p><img src="/2022/09/28/python/pulse/4.png"></p>
-<p>然后在附加驱动里边选择专有驱动，点应用更改，安装完成后重启系统</p>
-<p><img src="/2022/09/28/python/pulse/5.png"></p>
-<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><p>文中有两个数据是需要从google drive中下载的，如果无法下载可以，可以直接迁出我的gitee仓库，里边有已经下载好的数据集了，当然我还是建议你使用github的代码。</p>
-<h3 id="代码运行"><a href="#代码运行" class="headerlink" title="代码运行"></a>代码运行</h3><p>使用pycharm打开项目，如果使用conda 需要要在setting-&gt;Project:pulse -&gt;Project Interperter中选择你的conda环境</p>
-<p>可以查看查看几个py文件，如果发现缺失包提示，安装即可，直到所有的包安装完成即可。</p>
-<p>到此代码安装工作已经完毕，不过具体的运行并不是直接 运行run.py就可以的。</p>
-<p><strong>首先主程序就是run.py ，当你运行他的时候，他会去input文件中寻找png格式的图片，然后运算，结果会保留到runs文件中。但是input中的图片是有要求的（1024*1024），需要经过align_face.py进行面部对齐。所以运行run.py之前，先将你要运算的图片先放到realpics目录中，然后执行align_face.py，然后再执行run.py 。</strong></p>
-<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p>马赛克照片</p>
-<p><img src="/2022/09/28/python/pulse/6.png"></p>
-<p>修复后照片</p>
-<p><img src="/2022/09/28/python/pulse/7.jpeg"></p>
-<p>实际原图</p>
-<p><img src="/2022/09/28/python/pulse/8.png"></p>
-<p>擦，直接亚洲脸变成欧洲脸了，怪不得被黑了呢～</p>
-<p><strong>要强调的是，通过马赛克重建还原蔡徐坤图像这是不可能的，可以理解为PULSE在人脸库中找到了一张相似的脸，PULSE只是制作了不存在的人的假想面孔。</strong></p>
+<p>到此修改结束，关闭群晖的ssh登录权限（养成好习惯），登录一下PhotoStation试一下。</p>
+<p><img src="/2022/09/28/linux/photo-station-google-authenticator/3.png"></p>
+<p>群晖Photo Station增加Google Authenticator认证 群晖Photo Station增加Google Authenticator认证 群晖Photo Station增加Google Authenticator认证 经测试完美融合了群晖原来的谷歌认证器。只能说安全性稍微增加了一下下，至于群晖会不会有什么其他漏洞就不得知了，但是从PhotoStation层面仿佛安全了不少。</p>
+<p>群晖Photo Station增加Google Authenticator认证 本博文虽然短短几行字，但是实际操作稍微需要一点编程知识，并不适合所有人，权做给大家一点的改造思路。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 cookanger@gmail.com </span>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>docker初学者入门教程 | 记录学习成长</title>
+  <meta name="keywords" content=" docker ">
+  <meta name="description" content="docker初学者入门教程 | 记录学习成长">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="学习吧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://example.com/about/index.html">
+<meta property="og:site_name" content="记录学习成长">
+<meta property="og:description" content="学习吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-28T07:31:48.000Z">
+<meta property="article:modified_time" content="2022-09-28T07:31:48.761Z">
+<meta property="article:author" content="无聊看风景">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>无聊看风景</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/cookanger"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(8)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="docker">
+                        
+                        docker
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="fiddler">
+                        
+                        fiddler
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="linux">
+                        
+                        linux
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="nodejs">
+                        
+                        nodejs
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="python">
+                        
+                        python
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>阿里云</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>炒股</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据库</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>抓包</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>electron</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>fiddler</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>liunux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>pulse</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>synology</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 linux "
+           href="/2022/09/28/linux/photo-station-google-authenticator/"
+           data-tag="liunux,synology"
+           data-author="" >
+            <span class="post-title" title="群晖增加GoogleAuthenticator认证">群晖增加GoogleAuthenticator认证</span>
+            <span class="post-date" title="2022-09-28 16:03:24">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 linux "
+           href="/2022/09/28/linux/large-text-process/"
+           data-tag="linux"
+           data-author="" >
+            <span class="post-title" title="运维日记之一次超大文本文件的处理过程">运维日记之一次超大文本文件的处理过程</span>
+            <span class="post-date" title="2022-09-28 15:57:49">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 docker "
+           href="/2022/09/28/docker/docker-learn/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="docker初学者入门教程">docker初学者入门教程</span>
+            <span class="post-date" title="2022-09-28 15:54:54">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 fiddler "
+           href="/2022/09/28/hacker/fiddler/"
+           data-tag="fiddler,抓包"
+           data-author="" >
+            <span class="post-title" title="使用fiddler截存程序图片">使用fiddler截存程序图片</span>
+            <span class="post-date" title="2022-09-28 15:33:45">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 docker "
+           href="/2022/09/28/docker/mysql/"
+           data-tag="docker,数据库,mysql"
+           data-author="" >
+            <span class="post-title" title="基于docker实现主从同步模式">基于docker实现主从同步模式</span>
+            <span class="post-date" title="2022-09-28 15:33:42">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 docker "
+           href="/2022/09/28/docker/aliyun-k8s/"
+           data-tag="docker,阿里云"
+           data-author="" >
+            <span class="post-title" title="使用阿里云K8S集群实现分布式计算实践">使用阿里云K8S集群实现分布式计算实践</span>
+            <span class="post-date" title="2022-09-28 15:33:40">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 nodejs "
+           href="/2022/09/28/nodejs/electron-learn/"
+           data-tag="electron,炒股"
+           data-author="" >
+            <span class="post-title" title="Electron,打造window桌面小工具">Electron,打造window桌面小工具</span>
+            <span class="post-date" title="2022-09-28 15:33:37">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 python "
+           href="/2022/09/28/python/pulse/"
+           data-tag="python,pulse"
+           data-author="" >
+            <span class="post-title" title="PULSE 消除马赛克代码部署应用">PULSE 消除马赛克代码部署应用</span>
+            <span class="post-date" title="2022-09-28 15:33:35">2022/09/28</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-docker/docker-learn" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">docker初学者入门教程</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="docker">docker</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">docker</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-09-28 15:55:40'>2022-09-28 15:54</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88"><span class="toc-text">Docker能干什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="toc-text">安装Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%87%86%E5%A4%87"><span class="toc-text">系统准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD"><span class="toc-text">程序下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">切换容器类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%BA%90%E4%BF%AE%E6%94%B9"><span class="toc-text">镜像源修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8BDocker"><span class="toc-text">开始Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E9%95%9C%E5%83%8F"><span class="toc-text">搜索镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Redis"><span class="toc-text">安装Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%A4%E4%B8%AAMysql"><span class="toc-text">安装两个Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql5-6"><span class="toc-text">mysql5.6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mysql5-7"><span class="toc-text">mysql5.7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BDmysql5-6"><span class="toc-text">卸载mysql5.6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2docker%E5%AE%B9%E5%99%A8"><span class="toc-text">查询docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-text">删除镜像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85linux%E7%B3%BB%E7%BB%9F"><span class="toc-text">安装linux系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8C%82%E8%BD%BD"><span class="toc-text">文件挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E7%BB%88%E7%AB%AF%E5%90%AF%E5%8A%A8"><span class="toc-text">伪终端启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8"><span class="toc-text">进入容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BA%A4%E4%BA%92"><span class="toc-text">文件交互</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E6%A1%8C%E9%9D%A2"><span class="toc-text">图形化桌面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85wordpress-mysql"><span class="toc-text">安装wordpress+mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%88%AB%E5%AE%89%E8%A3%85"><span class="toc-text">分别安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E9%85%8D%E7%BD%AE-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%99%E4%B9%88%E9%85%8D%E7%BD%AE%E7%9A%84"><span class="toc-text">为什么要这么配置? 为什么是这么配置的?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="toc-text">docker 网络类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC-docker-compose"><span class="toc-text">启动脚本 docker-compose</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8image"><span class="toc-text">使用image</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-text">用法总结</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>本文是基于windows环境下使用docker的学习文章</p>
+<p>其实我也有很长的一段时期在ubuntu系统下开发,很喜欢linux系统的纯净方便,但是当你身边同事都是使用windows与你交流沟通传输资料的时候,使用linux系统开发倒是一件不方便的事情,再加上领导曾说了一句你用windows吧别和同事们不一样,然后我就一直使用windows了,不过也一直想着回到linux系统的怀抱下,双系统虚拟机都试过,直到遇到了Docker我才意识到这不就是我一直寻找的windows和linux完美共存的方案么!</p>
+<p>Docker的官方概念就不说了,相关的资料很多,如果不了解那就先去网上了解一下吧,这次我将从<strong>个人使用</strong>的角度去入门Docker,初步做到会用,而<strong>不去长篇大论讲概念</strong></p>
+<h2 id="Docker能干什么"><a href="#Docker能干什么" class="headerlink" title="Docker能干什么?"></a>Docker能干什么?</h2><p>张三是个程序员,平时开发需要安装各种软件,这次开发的项目需要Redis,没有Docker之前张三需要先去官网下载Redis,然后发现官网没有window版本,再几经搜索在github找到了redis for windows,然后又因为github网络的问题,缓慢下载下下来,再解压到某个目录,然后执行启动服务命令.有了Docker之后,直接执行一条docker run命令,即可成功,另外开发中还会需要安装不同版本的mysql,如果直接装到本机上,首先多个mysql都可能要在系统中注册服务,配置和环境要隔离出来,卸载的时候也比较麻烦,,如果使用docker直接根据版本拉取镜像,绑定端口运行即可,不需要的时候直接删掉容器即可</p>
+<p>李四也是程序员,平时需要在linux系统下做一些编译或者测试,但是因为公司的原因要装各种window独占的通讯软件,外加李四偶尔还想玩个CS:GO,所以他想在window和linux之间无缝切换,最一开始李四想到的是买两台笔电,这种想法想想就行了,后来又想到装双系统,双系统切换在于要重启太不方便,又想到装vmware虚拟机,vmware其实差不多可以满足李四的想法了,但是vmware太占内存了,最终李四选择了在window上使用Docker,需要linux的时候直接run一个linux系统的镜像即可,linux系统手到擒来,轻量快速都是vmware不可比的</p>
+<p>王五还是一个程序员,不过他的工作稍多一些,平时需要部署项目在测试服务器上,没有docker之前,王五先打包然后手动复制到服务器上,然后进入对应目录,执行命令启动项目,有了docker之后,王五打包项目的时候程序就会将镜像推动到仓库中,然后通过可视化界面或服务器命令重新拉取重启项目即可,并且出现问题之后可以通过tag快速回退启动上一个版本,后来王五又偷懒了,在上边的基础集成了自动化,直接提交代码,服务器自动构建部署运行</p>
+<p>林六又是一个程序员,他搭建了一套比较复杂的程序,程序依赖很多服务,同时还有很多配置,每次给别人演示安装的时候他都需要忙活半天去搭建环境,最后还不一定能成功,这样时候他总挠挠头说,在我机子上真能运行,有了docker之后,他把一系列程序通过打成一个docker镜像,在给别人演示的时候,只要先安装上docker,然后拉取他的镜像就可以了</p>
+<p>以上都是docker在个人开发上提高效率的案例,我认为学习docker最好就是把docker应用到实际开发生活中来,这样才能更快更好的理解Docker,下面就基于windows环境开始学习如何使用Docker</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><h3 id="系统准备"><a href="#系统准备" class="headerlink" title="系统准备"></a>系统准备</h3><p>电脑性能别太差了不然毫无体验,检查windows版本是否为企业版或专业版，并开启Hyper-v</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjAzMTUxNjM4LnBuZw?x-oss-process=image/format,png" alt="image-20200603151530359"></p>
+<h3 id="程序下载"><a href="#程序下载" class="headerlink" title="程序下载"></a>程序下载</h3><p>Windows 10以上,去官网下载<a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>,,目前Docker Desktop的体验非常好,Windows 10以下建议升级win10</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjAzMTUxMDQ1LnBuZw?x-oss-process=image/format,png" alt="选择windows"></p>
+<p>注册docker hub的账号(仅作登录Docker Desktop使用),安装完成后需要登录Docker,在CMD中运行docker -v 出现版本号即为成功</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-Cm8rrMQN-1591522751185)(C:\Users\caokang\AppData\Roaming\Typora\typora-user-images\image-20200603152711962.png)]</p>
+<h3 id="切换容器类型"><a href="#切换容器类型" class="headerlink" title="切换容器类型"></a>切换容器类型</h3><p>下载完成后需要切换成Linux容器类型,右键docker托盘图标,选择Switch to Linux containers,因为我已经转换过了,所以这里是Switch to Windows containers</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjAzMTUyODI0LnBuZw?x-oss-process=image/format,png" alt="image-20200603152820370"></p>
+<h3 id="镜像源修改"><a href="#镜像源修改" class="headerlink" title="镜像源修改"></a>镜像源修改</h3><p>我是用的是阿里云的镜像源,需要去阿里云注册账号,然后在镜像加速中查看你的加速器地址</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MDkwMDIyLnBuZw?x-oss-process=image/format,png" alt="image-20200606090020455"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MDkwMjQ2LnBuZw?x-oss-process=image/format,png" alt="image-20200606090244881"></p>
+<p>修改源地址,右键docker托盘图标-&gt;setting-&gt;然后按照如图修改加速源,最后点击 apply&amp;restart 即可</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MDkxNDUzLnBuZw?x-oss-process=image/format,png" alt="image-20200606091451649"></p>
+<h2 id="开始Docker"><a href="#开始Docker" class="headerlink" title="开始Docker"></a>开始Docker</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>镜像（Image）：一个文件,里面存放着程序以及运行方式</p>
+<p>容器（Container）：镜像运行的实体</p>
+<p>仓库（Repository）：镜像仓库</p>
+<p>标签（Tag）：标识着镜像的版本</p>
+<h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><p>镜像的查找可通过docker search命令,请在window的cmd窗口或powershell中,<del>不建议在git bash中使用,因为在git bash中会有错误提示</del></p>
+<pre><code>C:\Users\xxxx&gt;docker search redis
+NAME                             DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+redis                            Redis is an open source key-value store that…   8245                [OK]
+bitnami/redis                    Bitnami Redis Docker Image                      147                                     [OK]
+sameersbn/redis                                                                  80                                      [OK]
+grokzen/redis-cluster            Redis cluster 3.0, 3.2, 4.0, 5.0, 6.0           68
+......
+</code></pre>
+<p>然后可以根据DESCRIPTION通过NAME选择镜像,推荐下载第一个,一般都是官方源<br>关于镜像的下载: 启动一个镜像的时候,如果镜像不存在,则会先进行pull(下载)操作,你也可以主动pull,这样docker会把镜像下载本机,启动的时候则无需再次下载</p>
+<pre><code class="shell">docker pull redis 
+</code></pre>
+<h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><pre><code class="shell">docker run -d --name redis -p 6379:6379 redis
+</code></pre>
+<p>run  创建一个新的容器并运行一个命令<br>-d   后台运行容器，并返回容器ID,如果不加这个,程序将以前台启动,一旦关闭程序也将自动关闭<br>–name 给容器指定一个名称,建议加,方便以后维护<br>-p 使用方法: [-p 宿主机端口:容器内端口]  说明: 指定端口映射,因为默认情况下容器的网络与宿主机不互通,通过该参数可把redis的6379端口映射到本机6379端口上</p>
+<h3 id="安装两个Mysql"><a href="#安装两个Mysql" class="headerlink" title="安装两个Mysql"></a>安装两个Mysql</h3><h4 id="mysql5-6"><a href="#mysql5-6" class="headerlink" title="mysql5.6"></a>mysql5.6</h4><pre><code>C:\Users\xxxxx&gt;docker search mysql
+NAME                              DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   9587                [OK]
+mariadb                           MariaDB is a community-developed fork of MyS…   3486                [OK]
+mysql/mysql-server                Optimized MySQL Server Docker images. Create…   702                                     [OK]
+centos/mysql-57-centos7           MySQL 5.7 SQL database server                   76
+mysql/mysql-cluster               Experimental MySQL Cluster Docker images. Cr…   69
+centurylink/mysql                 Image containing mysql. Optimized to be link…   61                                      [OK]
+</code></pre>
+<p>比如我们想安装mysql5.6的版本,通过search我们也无法得知mysql的具体版本,,最简单的方法就是去官方hub上查阅,访问<a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql?tab=tags">https://hub.docker.com/_&#x2F;mysql?tab&#x3D;tags</a>,,(也可以使用命令的方式去查找版本号,不过这个需要安装脚本,以后再说)</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTEwOTQzLnBuZw?x-oss-process=image/format,png" alt="image-20200606110941879"></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTA0OTQ3LnBuZw?x-oss-process=image/format,png" alt="image-20200606104946214"></p>
+<p>这里先下载mysql5.6的镜像</p>
+<pre><code>docker pull mysql:5.6
+</code></pre>
+<p>5.6 , 5.7就是镜像的tag,tag可以理解为镜像的名字,如果不加tag,则会下载tag为latest的镜像</p>
+<p>通过镜像的Description,得知我们需要指定MYSQL_ROOT_PASSWORD才能运行mysql5.6</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTExMTUyLnBuZw?x-oss-process=image/format,png" alt="image-20200606111151161"></p>
+<pre><code class="shell">docker run -d --name mysql56 -e MYSQL_ROOT_PASSWORD=root -p 3306:3306  mysql:5.6
+</code></pre>
+<p>-e 设置环境变量,<strong>至于都有什么环境变量供我们去设置,可以通过查阅hub官网的Description标签页可以得知</strong></p>
+<h4 id="mysql5-7"><a href="#mysql5-7" class="headerlink" title="mysql5.7"></a>mysql5.7</h4><p>因为安装mysql5.6已经讲宿主机的3306端口分配了,所以需要指定一个新的端口</p>
+<pre><code>docker pull mysql:5.7
+docker run -d --name mysql57 -e MYSQL_ROOT_PASSWORD=root -p 3307:3306  mysql:5.7
+</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTUyMTUzLnBuZw?x-oss-process=image/format,png" alt="image-20200606152151633"></p>
+<h4 id="卸载mysql5-6"><a href="#卸载mysql5-6" class="headerlink" title="卸载mysql5.6"></a>卸载mysql5.6</h4><p>可视化操作的话,右键docker托盘图标-&gt;Dashboard</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTUyODM2LnBuZw?x-oss-process=image/format,png" alt="image-20200606152832668"></p>
+<p>命令操作</p>
+<pre><code>docker stop mysql56
+docker rm mysql56
+</code></pre>
+<p>stop 停止一个运行中的容器</p>
+<p>rm 删除一个停止的容器</p>
+<pre><code>docker rm -f mysql57
+</code></pre>
+<p>-f 默认情况下 rm 无法删除正在运行的容器,加 -f 即可强制删除</p>
+<p>后面追加容器id或容器name,因为上面我们通过–name指定了容器名称,所以这里直接输入即可,这也是我为什么建议加–name参数指定容器名称的原因,</p>
+<p>如果我们忘记了容器名称呢?</p>
+<h4 id="查询docker容器"><a href="#查询docker容器" class="headerlink" title="查询docker容器"></a>查询docker容器</h4><pre><code class="shell">C:\Users\xxxxx&gt;docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+5a7215cb11e2        redis               &quot;docker-entrypoint.s…&quot;   6 hours ago         Up 6 hours          0.0.0.0:6379-&gt;6379/tcp   redis
+
+docker ps     查询运行中的容器
+docker ps -a  查询所有容器
+</code></pre>
+<p>第一列的5a7215cb11e2就是容器id(CONTAINER ID),我们也就可以使用容器id进行对容器的操作</p>
+<p>创建两个数据,再删除两个数据库,对本机的系统没有造成任何污染,这就是Docker的优点,简直就是渣男,一旦分手忘得干干净净的</p>
+<h4 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h4><p>刚刚删除了mysql的容器,一旦再次需要mysql服务,直接run无需下载即可立马启动mysql服务,这是因为mysql的镜像依然在我们本机存储着,简直就是渣男,分手了还把对方藏在心底,这次我们要和mysql彻底决裂,那就是删除镜像</p>
+<pre><code class="shell">docker rmi mysql:5.6 
+docekr image rm mysql:5.6
+#以上两条命令操作相同,rmi 是 image rm 简化版
+</code></pre>
+<p>查询本机镜像</p>
+<pre><code class="shell">docker image ls
+docker images
+#以上两条命令操作相同,images 是 image ls 简化版
+</code></pre>
+<h3 id="安装linux系统"><a href="#安装linux系统" class="headerlink" title="安装linux系统"></a>安装linux系统</h3><p>以安装centos为例</p>
+<pre><code class="shell">docker search centos
+docker pull centos
+docker run -d -it --name centos -v /d/dev/test:/home/test centos
+</code></pre>
+<h4 id="文件挂载"><a href="#文件挂载" class="headerlink" title="文件挂载"></a>文件挂载</h4><p>先解释 -v &#x2F;d&#x2F;dev&#x2F;test:&#x2F;home&#x2F;test ,表示将宿主机的D:&#x2F;dev&#x2F;test目录与容器内部的&#x2F;home&#x2F;test目录映射起来,在该目录下的操作的双向影响的</p>
+<p>在这里D:&#x2F;dev&#x2F;test要写成&#x2F;d&#x2F;dev&#x2F;test的形式</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA2MTYyMTI5LnBuZw?x-oss-process=image/format,png" alt="image-20200606162127929"></p>
+<h4 id="伪终端启动"><a href="#伪终端启动" class="headerlink" title="伪终端启动"></a>伪终端启动</h4><p>接下来说 -it 是干嘛的</p>
+<p>-i:以交互模式运行容器，通常与 -t 同时使用</p>
+<p>-t:为容器重新分配一个伪输入终端，通常与 -i 同时使用；</p>
+<p>直接说效果吧,因为容器中没有一个常驻的前置进程，前置进程运行结束后，容器便自动退出了,所以结合-d -it 就是后台启动centos 并保持一个伪终端防止centos自动关闭,也可以使用-itd</p>
+<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>容器已经后台启动了 ,如何进入容器?</p>
+<pre><code>docker exec -it centos /bin/bash
+</code></pre>
+<p>exec  在运行的容器中执行命令</p>
+<p>-it 执行一个交互的终端</p>
+<p>&#x2F;bin&#x2F;bash 选择执行的bash</p>
+<p>exec并不是一个进入容器的命令,而是一个在运行的容器中执行命令的命令,-it标识启动了一个交互的终端,bash使用&#x2F;bin&#x2F;bash,所以上述命令是给了我们一个和容器内部通信的终端</p>
+<p>更详细的区别请看 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/miracle-luna/p/11111852.html"><strong>docker run 和 docker exec 的差异</strong></a></p>
+<h4 id="文件交互"><a href="#文件交互" class="headerlink" title="文件交互"></a>文件交互</h4><p>即使没有挂载了文件目录,我们还是可以通过命令用来复制传输容器文件</p>
+<pre><code>docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+
+将主机/d/dev/test2目录拷贝到容器centos的/home目录下。
+docker cp D:/dev/test2/ centos:/home/
+
+将容器centos的/home/test3目录拷贝到主机的D:/dev/目录中。
+docker cp centos:/home/test3 D:/dev/
+</code></pre>
+<p>在这里D:&#x2F;dev&#x2F;test形式不要变</p>
+<h4 id="图形化桌面"><a href="#图形化桌面" class="headerlink" title="图形化桌面"></a>图形化桌面</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/38a60776b28a">https://www.jianshu.com/p/38a60776b28a</a></p>
+<h3 id="安装wordpress-mysql"><a href="#安装wordpress-mysql" class="headerlink" title="安装wordpress+mysql"></a>安装wordpress+mysql</h3><p>接下来需要做的是安装两个容器wordpress和mysql,并让wordpress连接mysql数据库</p>
+<h4 id="分别安装"><a href="#分别安装" class="headerlink" title="分别安装"></a>分别安装</h4><p>首先安装mysql</p>
+<pre><code class="shell">docker run -d  -e  MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=wordpress --name mysql57 mysql:5.7
+</code></pre>
+<p>然后安装wordpress</p>
+<pre><code class="shell">docker run -d -p 80:80 --link mysql57:mysql -e WORDPRESS_DB_PASSWORD=root --name wordpress wordpress
+</code></pre>
+<p>分别执行以上两条命令,然后访问localhost:80即可打开wordpress安装界面</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA3MDcyODA1LnBuZw?x-oss-process=image/format,png" alt="image-20200607072644602"></p>
+<p>首先解释一下两条命令</p>
+<pre><code class="shell">docker run -d  -e  MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=wordpress --name mysql57 mysql:5.7
+# 启动了一个名为mysql57的容器,并初始化创建数据库wordpress
+docker run -d -p 80:80 --link mysql57:mysql_host -e WORDPRESS_DB_PASSWORD=root  -e WORDPRESS_DB_HOST=mysql_host --name wordpress wordpress
+#启动wordpress容器,link命令链接mysql57容器将它命名为mysql_host,然后指定数据库的密码为root,wordpress启动成功后将会自动连接mysql57容器的wordpress表
+</code></pre>
+<p>命令是简洁的,两条命令就立马启动好一个wordpress,作为一个新手的我在感慨的时候也是懵逼的,因为我心中想的是:</p>
+<h4 id="为什么要这么配置-为什么是这么配置的"><a href="#为什么要这么配置-为什么是这么配置的" class="headerlink" title="为什么要这么配置? 为什么是这么配置的?"></a>为什么要这么配置? 为什么是这么配置的?</h4><p>其实这一点不仅仅是作为一个docker入门学习的痛点,很多技术学习也都是这样的,既学习的方式都是狼吞虎咽不咀嚼的,学习docker就把常用命令记了下来,在安装某个容器的时候去百度一下安装命令,安装上就完事了,以为自己掌握了,然而下次换了一个新的容器的时候,还是要去网上搜索什么docker xxxx 安装 这样的关键词,所以我们要会举一反三,知其所以然</p>
+<p>1  docker学习是可以通过博客文章入门的,可以让你有迅速的了解</p>
+<p>2  继续提升是离不开官网文档的,这样才能了解最新的docker 命令的含义以及参数,有些文章可能已经过时不再支持</p>
+<p>3 了解镜像的详细配置请翻阅 <a target="_blank" rel="noopener" href="https://hub.docker.com/">docker hub</a> 镜像的详情页,在那里你能找到绝大多数的配置参数</p>
+<p>4 学会结合inspect命令查看镜像启动的方式,以及进入容器阅读具体的启动脚本</p>
+<p>其实前三点都已经讲过了,前三点几乎可以整合启动所有的镜像,第四点的使用稍后再说</p>
+<pre><code class="shell">docker run -d  -e  MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=wordpress --name mysql57 mysql:5.7
+# 启动了一个名为mysql57的容器,并初始化创建数据库wordpress
+docker run -d -p 80:80 --link mysql57:mysql_host -e WORDPRESS_DB_PASSWORD=root  -e WORDPRESS_DB_HOST=mysql_host --name wordpress wordpress
+#启动wordpress容器,link命令链接mysql57容器将它命名为mysql_host,然后指定数据库的密码为root,wordpress启动成功后将会自动连接mysql57容器的wordpress表
+</code></pre>
+<p>再看这里,link命令链接mysql57容器将它命名为mysql_host,可以理解为在wordpress容器中通过访问 <a target="_blank" rel="noopener" href="http://mysql_host:3306/">http://mysql_host:3306</a> ,即可访问mysql57容器的数据库服务,这里的mysql_host就代表mysql57的ip</p>
+<h4 id="docker-网络类型"><a href="#docker-网络类型" class="headerlink" title="docker 网络类型"></a>docker 网络类型</h4><p>上面接触了一点docker网络方面的知识,简单聊一下,使用docker network ls 可以查看当前网络列表</p>
+<p>目前（Docker v18.03），Docker Engine内置支持如下几种类型的网络。</p>
+<ul>
+<li><p>host类型</p>
+<p>host网络就是Docker宿主机的网络，是Docker Engine启动即默认创建的网络之一。加入到该网络中的所有容器实例，容器实例与容器宿主机之间没有网络隔离，所以容器实例都直接使用宿主机的网络，拥有与宿主机一样的IP，使用的是宿主机的端口。(目前仅支持linux ,windows mac 不支持,2020-06-07,未来可能支持)</p>
+</li>
+<li><p>bridge类型</p>
+<p>Docker Engine启动即默认创建的网络之一。bridge网络的网络驱动器为bridge，即-d&#x3D;bridge。</p>
+<p>该网络支持在同一个宿主机上的各个容器实例之间的通信。bridge网络是一个独立的网络空间，在网络空间内部的各个容器实例能够直接通信。各个容器实例都是连接到一个网桥，即docker0。新创建的容器实例默认就会加入bridge网络，即容器实例默认连接到docker0。创建容器实例可以通过使用–network指定加入到其他已有的网络。</p>
+<p>也可以另外创建一个定制的bridge网络，创建的bridge网络会覆盖默认的bridge网络。默认的bridge网络不支持服务的DNS自动发现，即一个容器实例要通过容器实例的name找到容器实例的IP，就无法使用该网络。定制的bridge网络，最大的好处是默认即支持服务的自动发现。</p>
+</li>
+<li><p>overlay类型</p>
+<p>overlay类型的网络的网络驱动器为overlay，即**-d&#x3D;overlay<strong>。该类型的网络适用于</strong>Docker宿主机集群**中的各个独立的容器实例之间通信。为集群中的Docker容器实例提供跨多个Docker Engine的网络连接。</p>
+</li>
+<li><p>macvlan类型</p>
+<p>macvlan类型的网络的网络驱动器为macvlan，即-d&#x3D;macvlan。该类型的网络适用于容器实例需要与宿主机的MAC地址直接通信，无需端口映射，也无需NAT，容器实例的eth0直接与宿主机的物理网卡通信。容器实例可以被赋予公共IP，并从宿主机外部直接访问。</p>
+</li>
+<li><p>none类型</p>
+<p>none网络是一个完全隔离的自治网络，甚至与Docker宿主机的网络都不通，必须手工配置网卡后才能够使用。</p>
+</li>
+</ul>
+<h4 id="启动脚本-docker-compose"><a href="#启动脚本-docker-compose" class="headerlink" title="启动脚本 docker-compose"></a>启动脚本 docker-compose</h4><pre><code class="shell">docker run -d  -e  MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=wordpress --name mysql57 mysql:5.7
+# 启动了一个名为mysql57的容器,并初始化创建数据库wordpress
+docker run -d -p 80:80 --link mysql57:mysql_host -e WORDPRESS_DB_PASSWORD=root  -e WORDPRESS_DB_HOST=mysql_host --name wordpress wordpress
+#启动wordpress容器,link命令链接mysql57容器将它命名为mysql_host,然后指定数据库的密码为root,wordpress启动成功后将会自动连接mysql57容器的wordpress表
+</code></pre>
+<p>再回看这两条命令,我们发现运行wordpress要两条命令并且还要配置,在以后的时候甚至还有更多镜像,那有没有简单的启动方法呢? 有的,就是使用<strong>docker-compose</strong> !</p>
+<blockquote>
+<p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p>
+</blockquote>
+<p>Compose 就是一个启动脚本的程序</p>
+<p>新增docker-compose.yml文件,复制内容如下</p>
+<pre><code class="yaml">mysql:
+    container_name: mysql
+    image: mysql:5.7
+    ports:
+     - &quot;3306:3306&quot;
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=wordpress
+     
+web:
+    container_name: wordpress
+    image: wordpress
+    links:
+     - &quot;mysql:mysql_host&quot;
+    ports:
+     - &quot;80:80&quot;
+    environment:
+     - WORDPRESS_DB_HOST=mysql_host
+     - WORDPRESS_DB_PASSWORD=root
+</code></pre>
+<p>以上就是两条命令的整合脚本,在对应目录下启动</p>
+<pre><code class="shell">docker-compose up -d #后台启动脚本
+</code></pre>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA3MDgyMzU5LnBuZw?x-oss-process=image/format,png" alt="image-20200607082358539"></p>
+<p>两个镜像就会作为一组同时被启动起来了</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvZG9ja2VyLzIwMjAwNjA3MDgzMTUzLnBuZw?x-oss-process=image/format,png" alt="image-20200607083152445"></p>
+<p>关闭</p>
+<pre><code>docker-compose down
+</code></pre>
+<p>关于docker-compose在此就不做详细解释了,以后另开文章详细说明</p>
+<h4 id="使用image"><a href="#使用image" class="headerlink" title="使用image"></a>使用image</h4><p>最简单的就是使用别人做好的wordpress mysql整合包,当然这是别人做好了,所以我们才能直接用,如果没有,还是需要我们自己动手的,这里也就不说了</p>
+<h2 id="用法总结"><a href="#用法总结" class="headerlink" title="用法总结"></a>用法总结</h2><pre><code>docker search 
+docker pull 
+docker run 
+docker ps
+docker start
+docker stop
+docker rm
+docker cp
+docker image ls
+docker image rm 
+docker-compose up -d
+docker-compose down
+docker exec
+</code></pre>
+<p>docker network 镜像之间的网络通信</p>
+<p>docker volume 使用volume保存镜像数据</p>
+<p>docker build 如何使用dockerfile构建镜像,以及dockerfile语法</p>
+<p>docker import&#x2F;export 导入导出镜像文件</p>
+<p>docker tag 给镜像打标签</p>
+<p>docker push 搭建私库并推送镜像进行部署</p>
+<p>docker swarm docker集群环境的设置</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 cookanger@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
