@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PULSE 消除马赛克代码部署应用 | 记录学习成长</title>
+  <meta name="keywords" content=" PULSE , AI ">
+  <meta name="description" content="PULSE 消除马赛克代码部署应用 | 记录学习成长">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="学习吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用fiddler截存程序图片">
+<meta property="og:url" content="http://example.com/2022/09/28/hacker/fiddler/index.html">
+<meta property="og:site_name" content="记录学习成长">
+<meta property="og:description" content="学习吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-28T07:33:45.000Z">
+<meta property="article:modified_time" content="2022-09-28T07:33:45.316Z">
+<meta property="article:author" content="无聊看风景">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>无聊看风景</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/cookanger"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(5)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="机器学习">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        机器学习
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="机器学习<--->图像">
+                                        
+                                        图像
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="5">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>AI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>PULSE</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 "
+           href="/2022/09/28/hacker/fiddler/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用fiddler截存程序图片">使用fiddler截存程序图片</span>
+            <span class="post-date" title="2022-09-28 15:33:45">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2022/09/28/docker/mysql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="基于docker实现主从同步模式">基于docker实现主从同步模式</span>
+            <span class="post-date" title="2022-09-28 15:33:42">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2022/09/28/docker/aliyun-k8s/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用阿里云K8S集群实现分布式计算实践">使用阿里云K8S集群实现分布式计算实践</span>
+            <span class="post-date" title="2022-09-28 15:33:40">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2022/09/28/nodejs/electron-learn/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Electron,打造window桌面小工具">Electron,打造window桌面小工具</span>
+            <span class="post-date" title="2022-09-28 15:33:37">2022/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 机器学习 图像 "
+           href="/2022/09/28/python/pulse/"
+           data-tag="PULSE,AI"
+           data-author="" >
+            <span class="post-title" title="PULSE 消除马赛克代码部署应用">PULSE 消除马赛克代码部署应用</span>
+            <span class="post-date" title="2022-09-28 15:33:35">2022/09/28</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-python/pulse" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">PULSE 消除马赛克代码部署应用</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="机器学习">机器学习</a> > 
+            
+            <a  data-rel="机器学习&lt;---&gt;图像">图像</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">PULSE</a>
+            
+            <a class="color3">AI</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-09-28 15:38:32'>2022-09-28 15:33</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PULSE%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%E8%BF%90%E8%A1%8C"><span class="toc-text">PULSE算法部署运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">代码下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96"><span class="toc-text">环境依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cmake-x2F-c"><span class="toc-text">cmake &#x2F; c++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#python-x2F-conda"><span class="toc-text">python &#x2F; conda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dlib"><span class="toc-text">dlib</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pytorch"><span class="toc-text">pytorch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cuda"><span class="toc-text">cuda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">数据集</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C"><span class="toc-text">代码运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-text">效果展示</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>美国如火如荼进行的BLM（黑命贵）运动。已经从民间上升到了政界，渗透进商业界，<strong>如今已经深入到了AI界</strong>。</p>
+<p> 最近，图灵奖得主、人工智能标杆人物Yann LeCun，因为一则言论被群攻，迫不得已出来道歉。而这起事件的导火索，正是最近突然爆火的PULSE算法</p>
+<p>该算法由杜克大学推出，可以将模糊的照片秒变清晰，效果出奇的好。这项研究在CVPR  2020上发表，论文标题为《PULSE：通过对生成模型的潜在空间探索实现自监督照片上采样（论文连接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2003.03808.pdf">PULSE：Self-Supervised Photo Upsampling via Latent Space Exploration of Generative Models</a>）。</p>
+<p>正当大家兴致勃勃的把玩的时候，谁料PULSE竟莫名闯了祸。</p>
+<p>一张照片引发AI社区大争议，Yann LeCun发推先解释后道歉。</p>
+<p>有人发现，将一张奥巴马的模糊照片，用PULSE洗出来以后，变成了一个白人！<strong>真•洗白？</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMDQ1MDcucG5n?x-oss-process=image/format,png"></p>
+<p>这下美国网民不干了，纷纷将斗争的矛头指向了人工智能。</p>
+<p>一向敢说的Yann LeCun，就这张照片发推表示：「结果的偏差，原因在于数据的偏差。为什么PULSE会出现奥巴马被洗白的情况？因为它是在FlickFaceHQ上进行预训练，这个数据集里基本都是白人照片。如果换成来自塞内加尔的数据集，训练完全相同的系统，那必然是每个人都看起来像非洲人。」</p>
+<p>这下很多AI研究人员、从业者也不干了，纷纷将斗争的矛头指向了LeCun。</p>
+<p>[以上内容来自 搜狐新闻 ]: <a target="_blank" rel="noopener" href="http://www.sohu.com/a/404339367_100191017">www.sohu.com/a/404339367_100191017</a>	“ 图灵奖得主道歉 因爆火的PULSE算法卷入“种族歧视”风波“</p>
+<h2 id="PULSE算法部署运行"><a href="#PULSE算法部署运行" class="headerlink" title="PULSE算法部署运行"></a>PULSE算法部署运行</h2><p>具体的舆论争吵就不聊了，看到这条新闻的时候，我感兴趣的就是这个PULSE算法，经过一番了解通俗点来说就是消除马赛克秒变高清人像，听起来好像挺好玩，这么好玩的东西当然要在自己电脑上运行起来了，于是就开始排坑了～</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly90dWt1aW1nLmJkc3RhdGljLmNvbS9zY3JvcC83NDY3NDJmODE3ZDFlZmVkNmQ5MGRkYWE0YjBlYmJlZi5naWY"></p>
+<h3 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h3><p>代码在github上：<a target="_blank" rel="noopener" href="https://github.com/adamian98/pulse">https://github.com/adamian98/pulse</a>，首先clone下来，如果特别慢，可以使用gitee导入github库，然后在gitee中下载下来。</p>
+<blockquote>
+<p>代码中有两个数据是需要从google drive中下载的，如果无法下载可以，可以直接迁出我的<a target="_blank" rel="noopener" href="https://gitee.com/cookanger/pulse">gitee仓库</a>，里边有已经下载好的数据集，并且代码是可运行成功的</p>
+</blockquote>
+<p>README.md中标明了：</p>
+<blockquote>
+<p> You will need to install cmake first (required for dlib, which is used  for face alignment). Currently the code only works with CUDA installed  (and therefore requires an appropriate GPU) and has been tested on Linux and Windows. For the full set of required Python packages, create a  Conda environment from the provided YAML, e.g.</p>
+</blockquote>
+<p>也就是需要安装cmake，dlib库，以及cuda支持，cuda代表需要<strong>nvidia显卡</strong>，所以没有N卡的同学也可以退散了，（或许也可以改代码不调用cuda，但我没实现）。</p>
+<p>起初，打算在windows上运行起来，发现真的是各种行不通，光安装一个dlib(算法库)都很费劲，编译安装就是报错，还得安装vs，以至于我最一开始放弃运行pulse的想法了，但是我实在是不死心，于是周末又在一台ubuntu系统上重新来过，发现一切都是秒过，直接安装成功，不禁感叹，搞开发还是得linux下。</p>
+<p>所以window下的同学也可以退散了，（或许你可以搞定dlib安装，搞定了就可以接着看）。</p>
+<h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><h4 id="cmake-x2F-c"><a href="#cmake-x2F-c" class="headerlink" title="cmake &#x2F; c++"></a>cmake &#x2F; c++</h4><pre><code class="shell">sudo apt-get install build-essential cmake
+sudo apt-get install libgtk-3-dev
+sudo apt-get install libboost-all-dev
+</code></pre>
+<h4 id="python-x2F-conda"><a href="#python-x2F-conda" class="headerlink" title="python &#x2F; conda"></a>python &#x2F; conda</h4><pre><code class="shell">#建议使用conda,但conda不是必须安装的，主要是解决了包依赖安装即可
+#安装conda就不多太详细了，我的python版本使用3.8，估计3.x都可以
+
+#下载Anaconda3
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+bash Anaconda3-2020.02-Linux-x86_64.sh
+#进入到pulse代码目录中,创建pulse环境
+conda env create -n pulse -f pulse.yml
+#激活
+conda activate pulse
+#conda安装慢可以访问 https://mirror.tuna.tsinghua.edu.cn/help/anaconda/ 使用国内源加快访问下载
+</code></pre>
+<h4 id="dlib"><a href="#dlib" class="headerlink" title="dlib"></a>dlib</h4><pre><code class="shell">#其实可以直接使用pip install dlib进行安装，但是我安装是一直报错的，如果你也报错的可以先下载下来再进行安装
+#dlib安装教程 http://dlib.net/compile.html
+#dlib下载连接：http://dlib.net/files/dlib-19.20.tar.bz2，下载完成之后解压，然后进入目录
+
+# Using dlib from Python
+python setup.py install
+
+#Using dlib from C++
+cd examples
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release
+</code></pre>
+<h4 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h4><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMDQ2MjIucG5n?x-oss-process=image/format,png"></p>
+<pre><code class="shell">#官网 https://pytorch.org/get-started/locally/
+
+#得到安装命令
+conda install pytorch torchvision cudatoolkit=10.2 -c pytorch
+</code></pre>
+<h4 id="cuda"><a href="#cuda" class="headerlink" title="cuda"></a>cuda</h4><p>左下角 附加驱动</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMTAwMTYuanBn?x-oss-process=image/format,png"></p>
+<p>然后在附加驱动里边选择专有驱动，点应用更改，安装完成后重启系统</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMDQ3MjYucG5n?x-oss-process=image/format,png"></p>
+<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><p>文中有两个数据是需要从google drive中下载的，如果无法下载可以，可以直接迁出我的gitee仓库，里边有已经下载好的数据集了，当然我还是建议你使用github的代码。</p>
+<h3 id="代码运行"><a href="#代码运行" class="headerlink" title="代码运行"></a>代码运行</h3><p>使用pycharm打开项目，如果使用conda 需要要在setting-&gt;Project:pulse -&gt;Project Interperter中选择你的conda环境</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMTAwMzIuanBn?x-oss-process=image/format,png"></p>
+<p>可以查看查看几个py文件，如果发现缺失包提示，安装即可，直到所有的包安装完成即可。</p>
+<p>到此代码安装工作已经完毕，不过具体的运行并不是直接 运行run.py就可以的。</p>
+<p><strong>首先主程序就是run.py ，当你运行他的时候，他会去input文件中寻找png格式的图片，然后运算，结果会保留到runs文件中。但是input中的图片是有要求的（1024*1024），需要经过align_face.py进行面部对齐。所以运行run.py之前，先将你要运算的图片先放到realpics目录中，然后执行align_face.py，然后再执行run.py 。</strong></p>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p>马赛克照片</p>
+<img src="https://img-blog.csdnimg.cn/738a478061a747c094a76e44c7c67115.png#pic_center" alt="在这里插入图片描述" style="zoom:600%;">
+
+
+
+
+<p>修复后照片</p>
+<img src="https://img-blog.csdnimg.cn/df1cf0ae70fe44a19e638778f10818ad.jpeg#pic_center" alt="在这里插入图片描述" style="zoom:25%;">
+
+
+
+ 
+
+<p>实际原图</p>
+<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9naXRlZS5jb20vY29va2FuZ2VyL2ltYWdlL3Jhdy9tYXN0ZXIvaW1hZ2UvcHVsc2UvMjAyMDA3MDUxMTAxMDQuanBlZw?x-oss-process=image/format,png" style="zoom:50%;">
+
+
+
+<p>擦，直接亚洲脸变成欧洲脸了，怪不得被黑了呢～</p>
+<p><strong>要强调的是，通过马赛克重建还原蔡徐坤图像这是不可能的，可以理解为PULSE在人脸库中找到了一张相似的脸，PULSE只是制作了不存在的人的假想面孔。</strong>所以pulse目前来说仅仅就是玩玩而已，没什么实际意义，但是亚洲脸变成欧洲脸是我不能接受的，现在我需要的是<strong>亚洲脸的训练模型</strong></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 cookanger@gmail.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
